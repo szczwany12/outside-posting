@@ -1,0 +1,14 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__form-label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+    &__input{
+      height: 300px;
+    }
+  }
+}
