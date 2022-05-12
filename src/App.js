@@ -17,7 +17,6 @@ const CLIENT_SECRET = "UizWyu9WnDL58ysRHm1waCsgmaXLxswQofdi4lkKhKp5bKcT1V";
 
 
 function App() {
-
     const [signedIn] = useAuthState(auth)
 
   return (

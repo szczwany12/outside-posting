@@ -4,8 +4,12 @@ import {auth} from "../firebase";
 
 export function SignIn() {
     function handleSignIn(){
-        const provider = new firebase.auth.TwitterAuthProvider()
-            auth.signInWithPopup(provider);
+        const provider = new firebase.auth.TwitterAuthProvider();
+            auth
+                .signInWithPopup(provider)
+                .then((user) => {
+                    console.log(user)
+                });
     }
 
     return (
