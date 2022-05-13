@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from "react";
 import {SignOut} from "./SignOut";
 
+
 export function Form () {
     const [postText, setPostText] = useState('');
     const [postSent, setPostSent] = useState([]);
@@ -10,6 +11,28 @@ export function Form () {
         event.preventDefault();
         setPostSent(postSent => [...postSent, postText]);
         setPostText('');
+
+        const data = {
+            text: `${postText}`
+        };
+        fetch(`https://api.twitter.com/2/tweets`, {
+            method: 'Post',
+            body: {
+                "text": "Hello World!"
+            },
+            headers:{
+                'Access-Control-Allow-Origin': `http://localhost:3000`,
+                'Content-Type':'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+
         console.log('sent');
     }
 
@@ -20,13 +43,9 @@ export function Form () {
     return (
         <div className="App">
             <form className="App__form">
-                <label className="App__form-label">Choose a platform
-                    <select>
-                        <option value="twitter">Twitter</option>
-                        <option value="facebook">Facebook</option>
-                    </select>
+                <label className="App__form-label">Write your post below:
                     <textarea
-                        placeholder="Write your post here."
+                        placeholder="Here..."
                         value={postText}
                         onChange={e => setPostText(e.target.value)} />
                     <button onClick={handleClick}>Send</button>
