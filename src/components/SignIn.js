@@ -1,5 +1,6 @@
-import React from 'react';
-import { getAuth, signInWithPopup, TwitterAuthProvider } from "firebase/auth";
+import React, {useState} from 'react';
+import { getAuth, signInWithRedirect, TwitterAuthProvider } from "firebase/auth";
+import {FacebookAuthProvider} from "firebase/auth";
 
 export function SignIn() {
 
@@ -7,15 +8,12 @@ export function SignIn() {
         const provider = new TwitterAuthProvider();
         const auth = getAuth();
         auth.languageCode = 'it';
-        signInWithPopup(auth, provider)
+        signInWithRedirect(auth, provider)
             .then((result) => {
                 const credential = TwitterAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
-                console.log('Users token: ', token);
                 const secret = credential.secret;
-                console.log('Users secret: ', secret);
                 const user = result.user;
-                console.log('User: ', user);
 
             }).catch((error) => {
                 const errorCode = error.code;
@@ -30,13 +28,31 @@ export function SignIn() {
     }
 
     function handleFacebookSignIn(){
-        //amazing code will be here
+        const provider = new FacebookAuthProvider();
+        const auth = getAuth();
+        auth.languageCode = 'it';
+        signInWithRedirect(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                const credential = FacebookAuthProvider.credentialFromResult(result);
+                const accessToken = credential.accessToken;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                console.log(errorCode);
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                const email = error.email;
+                console.log(email);
+                const credential = FacebookAuthProvider.credentialFromError(error);
+                console.log(credential);
+            })
     }
 
     return (
-        <div>
-            <button onClick={handleTwitterSignIn}>Sign in to twitter</button>
-            <button onClick={handleFacebookSignIn} disabled={true}>Sign in to facebook</button>
-        </div>
+                <div className='sign-in'>
+                    <button className='btn btn__twitter ' onClick={handleTwitterSignIn}>Twitter</button>
+                    <button className='btn btn__facebook' onClick={handleFacebookSignIn}>Facebook</button>
+                </div>
     );
 }

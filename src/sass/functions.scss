@@ -1,0 +1,6 @@
+@use "sass:math";
+@import "variables";
+
+@function toRem($value){
+  @return ($value/$base-size) * 1rem;
+}

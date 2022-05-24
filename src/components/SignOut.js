@@ -1,11 +1,11 @@
 import React from 'react';
 import {auth} from "../firebase";
 
-export function SignOut() {
+export function SignOut({nameOfClass}) {
 
     return (
         <div>
-            <button onClick={() => auth.signOut()}>Sign Out</button>
+            <button className={`btn btn__${nameOfClass}`} onClick={() => auth.signOut()}>Sign Out</button>
         </div>
     );
 }
