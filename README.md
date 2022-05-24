@@ -6,4 +6,7 @@ In the project directory, you can run:
 
 ## Project is hosted under this link
 
-https://outside-posting.web.app/
+[Outside Posting](https://outside-posting.web.app/)
+
+
+#### This project lets you send posts to twitter and to your facebook site
