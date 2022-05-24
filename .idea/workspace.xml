@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="085a5876-6e41-487b-a72e-ab7f19939939" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/sass/App.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sass/functions.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sass/normalize.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sass/variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
@@ -84,6 +87,7 @@
       <workItem from="1652971318656" duration="31747000" />
       <workItem from="1653056752023" duration="2338000" />
       <workItem from="1653064998395" duration="274000" />
+      <workItem from="1653401365490" duration="443000" />
     </task>
     <servers />
   </component>
