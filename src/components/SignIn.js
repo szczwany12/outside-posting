@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
 import { getAuth, signInWithRedirect, TwitterAuthProvider } from "firebase/auth";
 import {FacebookAuthProvider} from "firebase/auth";
 
 export function SignIn() {
-
     function handleTwitterSignIn(){
         const provider = new TwitterAuthProvider();
         const auth = getAuth();
@@ -11,10 +9,7 @@ export function SignIn() {
         signInWithRedirect(auth, provider)
             .then((result) => {
                 const credential = TwitterAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const secret = credential.secret;
-                const user = result.user;
-
+                console.log(credential);
             }).catch((error) => {
                 const errorCode = error.code;
                 console.log('Error code: ', errorCode);
@@ -26,7 +21,6 @@ export function SignIn() {
                 console.log('Credential: ', credential);
         })
     }
-
     function handleFacebookSignIn(){
         const provider = new FacebookAuthProvider();
         const auth = getAuth();
@@ -48,7 +42,6 @@ export function SignIn() {
                 console.log(credential);
             })
     }
-
     return (
                 <div className='sign-in'>
                     <button className='btn btn__twitter ' onClick={handleTwitterSignIn}>Twitter</button>

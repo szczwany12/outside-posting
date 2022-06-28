@@ -10,13 +10,10 @@ export function Form ( { signedIn } ) {
     const [postText, setPostText] = useState('');
     const [postSent, setPostSent] = useState([]);
     const [pageId, setPageId] = useState('');
-
     const providerID = signedIn.providerData[0].providerId;
     const cl = providerID.slice(0,-4);
-
     // _____ Function for getting posts from database _____
     const postCollectionRef = collection(db, "posts");
-
     useEffect(() => {
         const getPosts = async () => {
             const data = await getDocs(postCollectionRef);
@@ -28,12 +25,10 @@ export function Form ( { signedIn } ) {
                 console.log('przekroczono limit dzienny :c');
             });
     })
-
     // _____ Function for sending posts to database _____
     const handleAddPost = async () => {
         await addDoc(postCollectionRef, {site: `${cl}`, text: postText});
     }
-
     // _____ Function for removing posts from database _____
     const handleRemove = async (idx, postId) => {
         const databasePostId = doc(db, "posts", postId);
@@ -51,23 +46,17 @@ export function Form ( { signedIn } ) {
                 access_token:
                 "EAAIcPAnQrEIBAIRms9uq0hZCLjxC5OMAfU4IdpwZCdfI5x1CbyODXYz74kb57isFU5ai6bW3tpr4MQ9FZBHX4BH54lPE2jfAMNqQW6UftGWzEJjP5s3YCBK7ZBPZAG0G95HAwOPJ0vzXieAUsKHsfVPu6JTcherJRgaDXmFWIMIDCtcRZCdUUdxqeUxDUyHUwZD"
             })
-            .then(result => {
-                const data = result.data;
-            },
-                error => {
-                console.log(error);
-                })
     }
 
     return (
         <div className={`App App-${cl}`}>
             <form className="App__form">
-                <label className={`App__form-label App__form-label-${cl}`}>Write your post below:
+                <label className={`App__form-label App__form-label-${cl}`}>
+                    Write your post below:
                     <textarea className="App__form-textarea"
                         placeholder="Here..."
                         value={postText}
                         onChange={e => setPostText(e.target.value)} />
-
                     {providerID === 'twitter.com' ?
                         <a className='btn btn__twitter btn__twitter-share'
                            target="_blank"
@@ -92,12 +81,9 @@ export function Form ( { signedIn } ) {
                                         onClick={postToFacebookPage}>
                                     Facebook</button>
                             </div>
-
                         </section>
                     }
                 </label>
-
-
             </form>
             <SignOut nameOfClass={cl}/>
             {postSent.length > 0 ?
@@ -110,10 +96,8 @@ export function Form ( { signedIn } ) {
                             <button className={`post-list__remove btn__${cl}`} onClick={() => handleRemove(postSent.indexOf(post), post.id)}>Remove</button>
                         </li>
                     ))}
-                </ul> :
-                <p></p>
+                </ul> : null
             }
-
         </div>
     );
 }
